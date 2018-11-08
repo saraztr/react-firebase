@@ -4,19 +4,23 @@ export default {
   input: "src/index.tsx",
   output: [
     {
-      file: "dist/index.esm.js",
-      format: "esm"
-    },
-    {
       file: "dist/index.cjs.js",
       format: "cjs"
+    },
+    {
+      file: "dist/index.esm.js",
+      format: "esm"
     }
   ],
-  external: ["render-and-add-props", "react"],
   plugins: [
     typescript({
       typescript: require("typescript"),
-      abortOnError: false
+      abortOnError: false,
+      tsconfigOverride: {
+        compilerOptions: {
+          module: "ES2015"
+        }
+      }
     })
   ]
 };
